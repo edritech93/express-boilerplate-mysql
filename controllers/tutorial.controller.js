@@ -11,14 +11,12 @@ exports.create = (req, res) => {
         return;
     }
 
-    // Create a Tutorial
     const tutorial = {
         title: req.body.title,
         description: req.body.description,
         published: req.body.published ? req.body.published : false
     };
 
-    // Save Tutorial in the database
     Tutorial.create(tutorial)
         .then(data => {
             res.send(data);
