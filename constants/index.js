@@ -1,0 +1,19 @@
+const PRIVATE_KEY = 'BOILERPLATE@@2021'
+const TIME_AGE_ACCESS_TOKEN = '1d'
+const TIME_AGE_REFRESH_TOKEN = '7d'
+const DATA_NOT_FOUND = 'Data Tidak Ditemukan'
+const INPUT_FAILED = 'Input Data Gagal'
+
+const ROLE = {
+  SELLER: 'SELLER',
+  USER: 'USER'
+}
+
+module.exports = {
+  PRIVATE_KEY,
+  TIME_AGE_ACCESS_TOKEN,
+  TIME_AGE_REFRESH_TOKEN,
+  DATA_NOT_FOUND,
+  INPUT_FAILED,
+  ROLE
+}
