@@ -40,7 +40,7 @@ exports.setAccessToken = function (detail) {
   }
 
   const token = JWT.sign({
-    data: data
+    data
   }, PRIVATE_KEY, {
     expiresIn: detail.maxAge && typeof detail.maxAge === 'number' ? detail.maxAge : TIME_AGE_ACCESS_TOKEN
   })
@@ -55,7 +55,7 @@ exports.setRefreshToken = function (detail) {
   }
 
   const token = JWT.sign({
-    data: data
+    data
   }, PRIVATE_KEY, {
     expiresIn: detail.maxAge && typeof detail.maxAge === 'number' ? detail.maxAge : TIME_AGE_REFRESH_TOKEN
   })

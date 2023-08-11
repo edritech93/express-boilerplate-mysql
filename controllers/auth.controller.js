@@ -34,7 +34,7 @@ exports.register = (req, res) => {
 
 exports.login = (req, res) => {
   const { username, password } = req.body
-  Auth.findOne({ where: { username: username } })
+  Auth.findOne({ where: { username } })
     .then(data => {
       if (data && Helper.comparePassword(password, data.password)) {
         const accessToken = authService.setAccessToken({
@@ -46,8 +46,8 @@ exports.login = (req, res) => {
           maxAge: TIME_AGE_REFRESH_TOKEN
         })
         res.status(200).json({
-          accessToken: accessToken,
-          refreshToken: refreshToken
+          accessToken,
+          refreshToken
         })
       } else {
         res.status(400).json({
