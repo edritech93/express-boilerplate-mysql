@@ -21,14 +21,14 @@ app.use((req: Request, res: Response, next: NextFunction) => {
   next();
 });
 app.use(routes);
-app.use((error: ErrorType, req: Request, res: Response, next: NextFunction) => {
+app.use((error: ErrorType, req: Request, res: Response) => {
   const { status = 500, message, data } = error;
   res.status(status).json({ message: message, data: data });
 });
 
 // NOTE: force for develop is true, for production is false
 db.sequelize
-  .sync({ force: false })
+  .sync({ force: true })
   .then(() => {
     app.listen(process.env.SERVER_PORT, () => {
       console.log(`Server is running on port ${process.env.SERVER_PORT}`);
