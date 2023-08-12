@@ -1,5 +1,4 @@
 import { Request, Response } from 'express';
-import { INPUT_FAILED } from '../constants';
 import db from '../models';
 
 const Product = db.product;
@@ -16,7 +15,7 @@ export const getProduct = (req: Request, res: Response) => {
     })
     .catch((error) => {
       res.status(400).json({
-        message: error.message,
+        message: error.message
       });
     });
 };
@@ -29,7 +28,7 @@ export const getProductUser = (req: Request, res: Response) => {
     })
     .catch((error) => {
       res.status(400).json({
-        message: error.message,
+        message: error.message
       });
     });
 };
@@ -42,7 +41,7 @@ export const addProduct = (req: Request, res: Response) => {
     })
     .catch((error) => {
       res.status(400).send({
-        message: error.message || INPUT_FAILED,
+        message: error.message
       });
     });
 };
@@ -50,14 +49,14 @@ export const addProduct = (req: Request, res: Response) => {
 export const editProduct = (req: Request, res: Response) => {
   const { productId } = req.params;
   Product.update(req.body, {
-    where: { id: productId },
+    where: { id: productId }
   })
     .then(() => {
       res.status(200).send({ message: 'Produk Berhasil Diubah' });
     })
     .catch((error) => {
       res.status(400).json({
-        message: error.message,
+        message: error.message
       });
     });
 };
@@ -70,7 +69,7 @@ export const deleteProduct = (req: Request, res: Response) => {
     })
     .catch((error) => {
       res.status(400).json({
-        message: error.message,
+        message: error.message
       });
     });
 };

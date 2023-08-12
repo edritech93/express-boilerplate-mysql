@@ -6,35 +6,35 @@ export const productModel = (sequelize: Sequelize) => {
       allowNull: false,
       autoIncrement: true,
       primaryKey: true,
-      type: DataTypes.INTEGER,
+      type: DataTypes.INTEGER
     },
     productName: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: false
     },
     productDetail: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: false
     },
     productPrice: {
       type: DataTypes.INTEGER,
-      allowNull: false,
+      allowNull: false
     },
     categoryId: {
       type: DataTypes.INTEGER,
-      allowNull: false,
+      allowNull: false
     },
     attachment: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: false
     },
     userId: {
       type: DataTypes.INTEGER,
       allowNull: false,
       references: {
         model: 'profiles',
-        key: 'id',
-      },
-    },
+        key: 'id'
+      }
+    }
   });
 };

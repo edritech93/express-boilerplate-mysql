@@ -2,8 +2,7 @@ import { Sequelize } from 'sequelize';
 import { authModel } from './authModel';
 import { userModel } from './userModel';
 import { productModel } from './productModel';
-
-const dbConfig = require('../config/db.config.js');
+import { dbConfig } from '../config/db.config';
 
 const sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
   host: dbConfig.HOST,
@@ -12,8 +11,8 @@ const sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
     max: dbConfig.pool.max,
     min: dbConfig.pool.min,
     acquire: dbConfig.pool.acquire,
-    idle: dbConfig.pool.idle,
-  },
+    idle: dbConfig.pool.idle
+  }
 });
 
 const db: any = {};
@@ -27,7 +26,7 @@ db.user.hasMany(db.product, { foreignKey: 'userId' });
 
 db.product.belongsTo(db.user, {
   foreignKey: 'userId',
-  as: 'seller',
+  as: 'seller'
 });
 
 export default db;

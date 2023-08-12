@@ -6,5 +6,5 @@ export const INPUT_FAILED = 'Input Data Gagal';
 
 export const ROLE = {
   SELLER: 'SELLER',
-  USER: 'USER',
+  USER: 'USER'
 };

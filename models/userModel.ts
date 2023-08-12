@@ -7,32 +7,32 @@ export const userModel = (sequelize: Sequelize) => {
       allowNull: false,
       autoIncrement: true,
       primaryKey: true,
-      type: DataTypes.INTEGER,
+      type: DataTypes.INTEGER
     },
     fullName: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: false
     },
     phoneNumber: {
       type: DataTypes.STRING,
       allowNull: false,
-      unique: true,
+      unique: true
     },
     role: {
       type: DataTypes.ENUM(ROLE.SELLER, ROLE.USER),
-      defaultValue: ROLE.SELLER,
+      defaultValue: ROLE.SELLER
     },
     districtId: {
       type: DataTypes.INTEGER,
-      allowNull: false,
+      allowNull: false
     },
     attachment: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: false
     },
     isActive: {
       type: DataTypes.BOOLEAN,
-      defaultValue: false,
-    },
+      defaultValue: false
+    }
   });
 };

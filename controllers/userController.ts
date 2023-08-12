@@ -13,18 +13,18 @@ export const getUser = (req: Request, res: Response) => {
           res.status(200).send(data);
         } else {
           res.status(400).json({
-            message: 'Akun Anda belum aktif, minta Admin untuk mengaktifkan',
+            message: 'Akun Anda belum aktif, minta Admin untuk mengaktifkan'
           });
         }
       } else {
         res.status(400).json({
-          message: error.message,
+          message: error.message
         });
       }
     })
     .catch((error) => {
       res.status(400).json({
-        message: error.message,
+        message: error.message
       });
     });
 };
@@ -32,14 +32,14 @@ export const getUser = (req: Request, res: Response) => {
 export const editUser = (req: Request, res: Response) => {
   const { userId } = req.user.dataValues;
   Profile.update(req.body, {
-    where: { id: userId },
+    where: { id: userId }
   })
     .then(() => {
       res.status(200).send({ message: 'Profil Berhasil Diubah' });
     })
     .catch((error) => {
       res.status(400).json({
-        message: error.message,
+        message: error.message
       });
     });
 };

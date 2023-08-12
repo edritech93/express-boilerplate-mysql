@@ -6,24 +6,24 @@ export const authModel = (sequelize: Sequelize) => {
       allowNull: false,
       autoIncrement: true,
       primaryKey: true,
-      type: DataTypes.INTEGER,
+      type: DataTypes.INTEGER
     },
     username: {
       type: DataTypes.STRING,
       allowNull: false,
-      unique: true,
+      unique: true
     },
     password: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: false
     },
     userId: {
       type: DataTypes.INTEGER,
       allowNull: false,
       references: {
         model: 'profiles',
-        key: 'id',
-      },
-    },
+        key: 'id'
+      }
+    }
   });
 };

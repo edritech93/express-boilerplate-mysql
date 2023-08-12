@@ -1,4 +1,4 @@
 export type ErrorType = {
   status: number;
-  data: Object;
+  data: object;
 } & Error;
