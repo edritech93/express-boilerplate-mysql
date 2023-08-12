@@ -28,7 +28,7 @@ app.use((error: ErrorType, req: Request, res: Response) => {
 
 // NOTE: force for develop is true, for production is false
 db.sequelize
-  .sync({ force: true })
+  .sync({ force: false })
   .then(() => {
     app.listen(process.env.SERVER_PORT, () => {
       console.log(`Server is running on port ${process.env.SERVER_PORT}`);

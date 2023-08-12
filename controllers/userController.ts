@@ -2,23 +2,17 @@ import { Request, Response } from 'express';
 import { UserType } from '../types/UserType';
 import db from '../models';
 
-const Profile = db.user;
+const User = db.user;
 
 export const getUser = (req: Request, res: Response) => {
   const { userId } = req.user.dataValues;
-  Profile.findOne({ where: { id: userId } })
+  User.findOne({ where: { id: userId } })
     .then((data: UserType) => {
-      if (data) {
-        if (data.isActive) {
-          res.status(200).send(data);
-        } else {
-          res.status(400).json({
-            message: 'Akun Anda belum aktif, minta Admin untuk mengaktifkan'
-          });
-        }
+      if (data?.isActive) {
+        res.status(200).send(data);
       } else {
         res.status(400).json({
-          message: error.message
+          message: 'Akun Anda belum aktif, minta Admin untuk mengaktifkan'
         });
       }
     })
@@ -31,7 +25,7 @@ export const getUser = (req: Request, res: Response) => {
 
 export const editUser = (req: Request, res: Response) => {
   const { userId } = req.user.dataValues;
-  Profile.update(req.body, {
+  User.update(req.body, {
     where: { id: userId }
   })
     .then(() => {
