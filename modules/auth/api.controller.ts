@@ -10,9 +10,7 @@ export default class AuthApiController {
         message: 'Success register'
       });
     } catch (error) {
-      next({
-        error
-      });
+      next(error);
     }
   }
 
@@ -27,9 +25,7 @@ export default class AuthApiController {
         })
       });
     } catch (error) {
-      next({
-        error
-      });
+      next(error);
     }
   }
 }

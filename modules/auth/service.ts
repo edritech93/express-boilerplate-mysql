@@ -5,7 +5,6 @@ import { generateToken } from '../../utils/jwt';
 import UserService from '../user/service';
 import db from '../../models';
 
-const User = db.user;
 const Auth = db.auth;
 
 export default class AuthenticationService {
@@ -15,12 +14,12 @@ export default class AuthenticationService {
     });
     if (exist) {
       throw {
-        success: 400,
+        status: 400,
         message: 'Email already registered!'
       };
     }
     try {
-      const userSave = await User.create(body);
+      const userSave = await UserService.addUser(body);
       await Auth.create({
         ...body,
         userId: userSave.id,
@@ -34,28 +33,27 @@ export default class AuthenticationService {
 
   static async login(body: BodyLoginType) {
     try {
-      const exist = await UserService.getByEmail({
+      const exist = await Auth.findOne({
         email: body.email
       });
       if (!exist) {
         throw {
-          success: 400,
-          message: 'Email or password incorrect!'
+          status: 400,
+          message: 'User not exist'
         };
       }
-      if (!checkPassword(body.password, exist.password)) {
+      if (!checkPassword(body.password, exist.dataValues.password)) {
         throw {
           status: 400,
           message: 'Email or password incorrect!'
         };
       }
-      const token = generateToken(
-        {
-          email: body.email
-        },
-        '1d'
-      );
-      return token;
+      const user = await UserService.getById({
+        userId: exist.dataValues.userId
+      });
+      const token = generateToken(user.dataValues, '1h');
+      const refreshToken = generateToken(user.dataValues, '1d');
+      return { token, refreshToken };
     } catch (error) {
       console.log(error);
       throw error;

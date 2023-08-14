@@ -24,7 +24,7 @@ app.use(routes);
 
 // NOTE: force for develop is true, for production is false
 db.sequelize
-  .sync({ force: true })
+  .sync({ force: false })
   .then(() => {
     app.use(errorHandler);
     app.listen(process.env.SERVER_PORT, () => {

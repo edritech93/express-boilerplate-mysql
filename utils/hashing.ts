@@ -11,5 +11,7 @@ export function hashPassword(inputPassword: string) {
 }
 
 export function checkPassword(inputPassword: string, hashingPassword: string) {
+  console.log('inputPassword => ', inputPassword);
+  console.log('hashingPassword => ', hashingPassword);
   return bcrypt.compareSync(inputPassword, hashingPassword);
 }

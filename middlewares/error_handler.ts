@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Request, Response, NextFunction } from 'express';
 import { ErrorType } from '../types/ErrorType';
 
@@ -18,8 +19,8 @@ export default function errorHandler(
       break;
 
     default:
-      errorMessage.push(message);
       statusCode = status;
+      errorMessage.push(message);
       break;
   }
 
