@@ -4,16 +4,16 @@ import { ROLE } from '../constants';
 export const userModel = (sequelize: Sequelize) => {
   return sequelize.define('user', {
     id: {
+      type: DataTypes.INTEGER,
       allowNull: false,
       autoIncrement: true,
-      primaryKey: true,
-      type: DataTypes.INTEGER
+      primaryKey: true
     },
     fullName: {
       type: DataTypes.STRING,
       allowNull: false
     },
-    phoneNumber: {
+    email: {
       type: DataTypes.STRING,
       allowNull: false,
       unique: true
@@ -22,13 +22,9 @@ export const userModel = (sequelize: Sequelize) => {
       type: DataTypes.ENUM(ROLE.SELLER, ROLE.USER),
       defaultValue: ROLE.SELLER
     },
-    districtId: {
-      type: DataTypes.INTEGER,
-      allowNull: false
-    },
     attachment: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: true
     },
     isActive: {
       type: DataTypes.BOOLEAN,

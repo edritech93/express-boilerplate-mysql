@@ -32,7 +32,7 @@ export const productModel = (sequelize: Sequelize) => {
       type: DataTypes.INTEGER,
       allowNull: false,
       references: {
-        model: 'profiles',
+        model: 'users',
         key: 'id'
       }
     }
