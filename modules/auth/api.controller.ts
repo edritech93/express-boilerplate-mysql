@@ -1,10 +1,10 @@
 import { Request, Response, NextFunction } from 'express';
-import AuthenticationService from './service';
+import AuthService from './service';
 
 export default class AuthApiController {
   static async register(req: Request, res: Response, next: NextFunction) {
     try {
-      await AuthenticationService.register(req.body);
+      await AuthService.register(req.body);
       res.status(201).json({
         success: true,
         message: 'Success register'
@@ -19,7 +19,7 @@ export default class AuthApiController {
       res.status(200).json({
         success: true,
         message: 'Success login',
-        data: await AuthenticationService.login({
+        data: await AuthService.login({
           email: req.body.email,
           password: req.body.password
         })
