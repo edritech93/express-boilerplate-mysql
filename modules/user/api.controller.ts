@@ -1,39 +1,30 @@
-import { Request, Response } from 'express';
-// import { UserType } from '../../types/UserType';
-// import db from '../../models';
+import { Request, Response, NextFunction } from 'express';
+import UserService from './service';
 
-// const User = db.user;
+export default class UserApiController {
+  static async getUser(req: Request, res: Response, next: NextFunction) {
+    try {
+      const { userId } = req.user.dataValues;
+      res.status(201).json({
+        success: true,
+        message: 'Success Get User',
+        data: await UserService.getById(userId)
+      });
+    } catch (error) {
+      next(error);
+    }
+  }
 
-export const getUser = (req: Request, res: Response) => {
-  // const { userId } = req.user.dataValues;
-  // User.findOne({ where: { id: userId } })
-  //   .then((data: UserType) => {
-  //     if (data?.isActive) {
-  //       res.status(200).send(data);
-  //     } else {
-  //       res.status(400).json({
-  //         message: 'Akun Anda belum aktif, minta Admin untuk mengaktifkan'
-  //       });
-  //     }
-  //   })
-  //   .catch((error) => {
-  //     res.status(400).json({
-  //       message: error.message
-  //     });
-  //   });
-};
-
-export const editUser = (req: Request, res: Response) => {
-  // const { userId } = req.user.dataValues;
-  // User.update(req.body, {
-  //   where: { id: userId }
-  // })
-  //   .then(() => {
-  //     res.status(200).send({ message: 'Profil Berhasil Diubah' });
-  //   })
-  //   .catch((error) => {
-  //     res.status(400).json({
-  //       message: error.message
-  //     });
-  //   });
-};
+  static async editUser(req: Request, res: Response, next: NextFunction) {
+    try {
+      const { userId } = req.user.dataValues;
+      res.status(200).json({
+        success: true,
+        message: 'Success login',
+        data: await UserService.editUser(req.body, userId)
+      });
+    } catch (error) {
+      next(error);
+    }
+  }
+}

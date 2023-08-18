@@ -1,4 +1,4 @@
-import { BodyRegisterType } from '../../types/BodyRegisterType';
+import { UserType } from '../../types/UserType';
 import db from '../../models';
 
 const User = db.user;
@@ -12,7 +12,11 @@ export default class UserService {
     return await User.findOne({ where: { id: userId } });
   }
 
-  static async addUser(body: BodyRegisterType) {
+  static async addUser(body: UserType) {
     return await User.create(body);
+  }
+
+  static async editUser(body: UserType, userId: number) {
+    await User.update(body, { where: { id: userId } });
   }
 }
